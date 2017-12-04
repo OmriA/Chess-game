@@ -1,0 +1,16 @@
+(3)// - always coming after one tab key even in the middle of the code.
+
+(1)/** - must come before every function even if has no in/out-put.
+
+(1)/**
+The function calculates the sum of all the elements in the array.
+Input:	arr - the array.	//after : press tab key
+	N - explain	//if more than one arg make a new line and use one tab key.
+	...	//so on
+Output:	None.	//like in input (the none is when there is no out/in-put)
+(1)**/
+
+(4)if (	(z != x && z != y) ||
+	(x != y && x != z) ||
+	(y != x && y != z))
+
