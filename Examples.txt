@@ -14,5 +14,3 @@ Output:	None.	//like in input (the none is when there is no out/in-put)
 	(x != y && x != z) ||
 	(y != x && y != z))
 
-
-ë
