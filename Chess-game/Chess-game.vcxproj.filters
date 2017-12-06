@@ -18,5 +18,8 @@
     <ClInclude Include="ChessGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Tool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
