@@ -1,22 +1,14 @@
 #pragma once
-
-#include <vector>
-#include <functional>
-
-class Tool
-{
+#include "Board.h"
+#include "Location.h"
+class Board;
+class Tool {
 public:
 	Tool();
-	~Tool();
-
+	virtual ~Tool();
 protected:
-	std::vector<function> _moves;
+	virtual bool isLegal(Location, Location);
+	map<string, function<bool(Location, Location)>> _moves;
+	bool _color;
+
 };
-
-Tool::Tool()
-{
-}
-
-Tool::~Tool()
-{
-}
