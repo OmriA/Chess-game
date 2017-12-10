@@ -1,5 +1,7 @@
 #pragma once
+
 #include "Tool.h"
-class King : public Tool{
+
+class King : public Tool {
 
 };

@@ -1,10 +1,11 @@
 #pragma once
+
 #include "Board.h"
 #include "Location.h"
+
 class Board;
 class Tool {
 public:
-	Tool();
 	virtual ~Tool();
 protected:
 	virtual bool isLegal(Location, Location);
