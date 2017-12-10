@@ -15,10 +15,3 @@ Board::Board()
 		}
 	}
 }
-
-/**
-Distractor to the board.
-Input: None.
-Output: None.
-**/
-Board::~Board() {}

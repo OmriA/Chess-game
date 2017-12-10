@@ -6,10 +6,11 @@
 class Board;
 class Tool {
 public:
-	virtual ~Tool();
+	Tool(bool color, char sign);
+	virtual ~Tool() = default;
 protected:
-	virtual bool isLegal(Location, Location);
+	virtual bool isLegal(Location src, Location dest) = 0;
 	map<string, function<bool(Location, Location)>> _moves;
 	bool _color;
-
+	char _sign;
 };

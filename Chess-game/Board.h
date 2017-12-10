@@ -1,6 +1,7 @@
 #pragma once
 #include "ChessGame.h"
-#include "AllTools.h"
+#include "Tool.h"
+#include "Empty.h"
 
 #define BOARD_SIZE 8
 
@@ -12,5 +13,5 @@ private:
 
 public:
 	Board();
-	~Board();
+	~Board() = default;
 };
