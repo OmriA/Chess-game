@@ -1,4 +1,5 @@
 ﻿  Tool.cpp
+c:\users\magshimim\documents\magshimim\eleventhgrade\firstsemester\programming\middleproject_omriabramovich&itaygirstein\chess-game\project-solution\project-solution\tool.cpp(5): error C2065: 'forward': undeclared identifier
   Rook.cpp
   Queen.cpp
   Player.cpp
@@ -11,4 +12,4 @@
   Board.cpp
   Bishop.cpp
   Generating Code...
-c:\users\magshimim\desktop\itay\github\chess-game\project-solution\project-solution\empty.cpp(12): error C4716: 'Empty::isLegal': must return a value
+c:\users\magshimim\documents\magshimim\eleventhgrade\firstsemester\programming\middleproject_omriabramovich&itaygirstein\chess-game\project-solution\project-solution\empty.cpp(13): error C4716: 'Empty::isLegal': must return a value

@@ -2,12 +2,12 @@
 
 class Location {
 public:
-	explicit Location(char,int);
+	Location(unsigned int row, char col);
 	~Location() = default;
-	void setRow(unsigned int);
-	void setCol(char);
-	unsigned int getRow(void);
-	char getCol(void);
+	void setRow(unsigned int row);
+	void setCol(char col);
+	unsigned int getRow() const;
+	char getCol() const;
 private:
 	char _col;
 	unsigned int _row;
