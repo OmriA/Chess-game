@@ -7,7 +7,7 @@
 class Tool;
 
 class Board {
-private:
+private:f
 	Tool* _board[BOARD_SIZE][BOARD_SIZE];
 
 public:
