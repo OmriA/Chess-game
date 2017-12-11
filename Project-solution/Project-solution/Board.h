@@ -9,7 +9,6 @@ class Tool;
 class Board {
 private:
 	Tool* _board[BOARD_SIZE][BOARD_SIZE];
-	std::string getBoardStr() const;
 
 public:
 	Board();
