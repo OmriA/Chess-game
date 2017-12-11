@@ -3,8 +3,8 @@
 
 /**
 Constractor to the board.
-Input: None.
-Output: None.
+Input:	None.
+Output:	None.
 **/
 Board::Board()
 {
@@ -16,3 +16,9 @@ Board::Board()
 		}
 	}
 }
+
+/**
+Returns the board string.
+Input:	None.
+Output:	The board string.
+**/

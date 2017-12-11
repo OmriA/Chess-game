@@ -7,8 +7,9 @@
 class Tool;
 
 class Board {
-private:f
+private:
 	Tool* _board[BOARD_SIZE][BOARD_SIZE];
+	string getBoardStr() const;
 
 public:
 	Board();
