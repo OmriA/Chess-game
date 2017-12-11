@@ -1,0 +1,12 @@
+﻿  Tool.cpp
+  Rook.cpp
+  Queen.cpp
+  Player.cpp
+  Pawn.cpp
+  Knight.cpp
+  King.cpp
+  Empty.cpp
+  Board.cpp
+  Bishop.cpp
+  Generating Code...
+c:\users\magshimim\documents\magshimim\eleventhgrade\firstsemester\programming\middleproject_omriabramovich&itaygirstein\project-solution\project-solution\empty.cpp(12): error C4716: 'Empty::isLegal': must return a value
