@@ -1,33 +1,27 @@
 #include "Tool.h"
 #include "Empty.h"
 
-#define VALID_MOVE 0
-#define VALID_CHECK 1
-#define SRC_HAS_NO_TURNS_TOOL 2
-#define DST_HAS_TURNS_TOOL 3
-#define INVALID_CHECK 4
-#define INVALID_MOVE 6
-#define SAME_SRC_DST 7
-#define CHECKMATE 8
-
 /**
 Checking if the tool can move forward or backwards.
 Input:	board - the board
 		turn - whose turn
 		src - the source location
 		dst - the destination location
-Output:	True if the tool can move, False if not.
+Output:	0 - valid move
+		2 - invalid move, src hasn't turn's tool
+		3 - invalid move, dst has turn's tool
+		6 - invalid move, invalid tool's movement
+		7 - invalid move, src and dst are the same.
 **/
 int vertical(Board board, int turn, Location src, Location dst)
 {
-	if(src != dst)	//(1)
+	if (src != dst)	//(1)
 	{
-		if (board.getIndex(src.getRow(), src.getCol())->getColor() == turn)	//checking if the tool is the player's tool (2)
+		if (board.getIndex(src.getRow(), src.getCol())->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
 		{
 			if (board.getIndex(dst.getRow(), dst.getCol())->getColor() != turn)	//checking if dst has no tool from player's tool (3)
 			{
-
-				if (src.getRow() > dst.getRow())
+				if (src.getRow() > dst.getRow())	//if src is above dst
 				{
 					for (unsigned int i = src.getRow() - 1; i > dst.getRow(); i--)	//checking if there is any tool between src to dst
 					{
@@ -37,7 +31,7 @@ int vertical(Board board, int turn, Location src, Location dst)
 						}
 					}
 				}
-				else
+				else	//src is underneath dst
 				{
 					for (unsigned int i = src.getRow() + 1; i < dst.getRow(); i++)	//checking if there is any tool between src to dst
 					{
@@ -62,12 +56,58 @@ int vertical(Board board, int turn, Location src, Location dst)
 	return SAME_SRC_DST;	//(1)
 }
 
-bool horizontal(Board board, int turn, Location src, Location dst)
+/**
+Checking if the tool can move right or left.
+Input:	board - the board
+		turn - whose turn
+		src - the source location
+		dst - the destination location
+Output:	0 - valid move
+		2 - invalid move, src hasn't turn's tool
+		3 - invalid move, dst has turn's tool
+		6 - invalid move, invalid tool's movement
+		7 - invalid move, src and dst are the same.
+**/
+int horizontal(Board board, int turn, Location src, Location dst)
 {
-	if (board.getIndex(src.getRow(), src.getCol())->getColor() == turn)	//checking if the tool is the player's tool
+	if (src != dst)	//(1)
 	{
-
+		if (board.getIndex(src.getRow(), src.getCol())->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
+		{
+			if (board.getIndex(dst.getRow(), dst.getCol())->getColor() != turn)	//checking if dst has no tool from player's tool (3)
+			{
+				if (src.getCol() > dst.getCol())	//if src is right to dst
+				{
+					for (unsigned int i = src.getCol() - 1; i > dst.getCol(); i--)	//checking if there is any tool between src to dst
+					{
+						if (board.getIndex(i, src.getRow())->getSign() != '#')	//checking between src to dst
+						{
+							return INVALID_MOVE;	//check with kfir
+						}
+					}
+				}
+				else	//src is left to dst.
+				{
+					for (unsigned int i = src.getCol() + 1; i < dst.getCol(); i++)	//checking if there is any tool between src to dst
+					{
+						if (board.getIndex(i, src.getRow())->getSign() != '#')	//checking between src to dst
+						{
+							return INVALID_MOVE;	//check with kfir
+						}
+					}
+				}
+			}
+			else	//(3)
+			{
+				return DST_HAS_TURNS_TOOL;
+			}
+		}
+		else	//(2)
+		{
+			return SRC_HAS_NO_TURNS_TOOL;
+		}
 	}
+	return SAME_SRC_DST;	//(1)
 }
 
 /**

@@ -7,7 +7,7 @@ Output:	None.
 **/
 Empty::Empty() : Tool(-1, '#') {}
 
-bool Empty::isLegal(Location src, Location dest)
+int Empty::isLegal(Location src, Location dest)
 {
-	return false;
+	return SRC_HAS_NO_TURNS_TOOL;
 }
