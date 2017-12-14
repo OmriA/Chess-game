@@ -8,6 +8,8 @@ public:
 	void setCol(char col);
 	unsigned int getRow() const;
 	char getCol() const;
+	bool operator!=(Location other);
+
 private:
 	char _col;
 	unsigned int _row;

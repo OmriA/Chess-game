@@ -47,3 +47,13 @@ char Location::getCol() const
 {
 	return _col;
 }
+
+/**
+Checking if the Two locations are different.
+Input:	other - the other location.
+Output:	true if they are different, false if not.
+**/
+bool Location::operator!=(Location other)
+{
+	return _col != other._col && _row != other._row;
+}

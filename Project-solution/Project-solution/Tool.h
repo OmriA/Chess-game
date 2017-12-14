@@ -6,14 +6,14 @@
 class Board;
 class Tool {
 public:
-	Tool(bool color, char sign);
+	Tool(int color, char sign);
 	virtual ~Tool() = default;
 	char getSign() const;
-	bool getColor() const;
+	int getColor() const;
 
 protected:
-	virtual bool isLegal(Location src, Location dest) = 0;
-	map<string, function<bool(Board, bool, Location, Location)>> _moves;
-	bool _color;
+	virtual int isLegal(Location src, Location dest) = 0;
+	map<string, function<bool(Board, int, Location, Location)>> _moves;
+	int _color;	//1 = white,  0 = black, -1 = empty.
 	char _sign;
 };
