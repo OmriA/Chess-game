@@ -23,6 +23,7 @@ public:
 	virtual ~Tool() = default;
 	char getSign() const;
 	int getColor() const;
+	void move(Board board, Location src, Location dst);
 
 protected:
 	virtual int isLegal(Board board, int turn, Location src, Location dst) = 0;

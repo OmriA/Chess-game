@@ -132,7 +132,7 @@ Tool::Tool(int color, char sign, vector<int> moves) : _color(color), _sign(sign)
 			break;
 
 		case HORIZONTAL:
-			_moves["horizontal"] =  horizontal;
+			_moves["horizontal"] = horizontal;
 			break;
 
 		case DIAGONAL:
@@ -164,4 +164,23 @@ Output:	The tool's color.
 int Tool::getColor() const
 {
 	return _color;
+}
+
+void Tool::move(Board board, Location src, Location dst)
+{
+	int dstRow = dst.getRow(), dstCol = dst.getCol();
+	int srcRow = src.getRow(), srcCol = src.getCol();
+
+	Tool* temp = board.getIndex(dstRow, dstCol);
+
+	if (temp->getSign() != '#')	//checking if the tool is eating any other player.
+	{
+		delete temp;
+		board.setIndex(dstRow, dstCol, new Empty());
+	}
+	else
+	{
+		board.setIndex(dstRow, dstCol, board.getIndex(srcRow, srcCol));
+		board.setIndex(srcRow, srcCol, temp);
+	}
 }

@@ -15,5 +15,6 @@ public:
 	Board();
 	~Board() = default;
 	string getBoardStr() const;
-	Tool* getIndex(const int x,const int y) const;
+	Tool* getIndex(const int row,const int col) const;
+	void setIndex(const int row, const int col, const Tool* newTool);
 };

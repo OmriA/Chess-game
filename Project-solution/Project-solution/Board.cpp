@@ -36,7 +36,12 @@ string Board::getBoardStr() const
 	return str;
 }
 
-Tool* Board::getIndex(const int x, const int y) const
+Tool* Board::getIndex(const int row, const int col) const
 {
-	return _board[x][y];
+	return _board[row][col];
+}
+
+void Board::setIndex(const int row, const int col, const Tool* newTool)
+{
+	_board[row][col] = newTool;
 }
