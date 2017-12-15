@@ -26,7 +26,7 @@ public:
 
 protected:
 	virtual int isLegal(Board board, int turn, Location src, Location dst) = 0;
-	map<string, function<bool(Board, int, Location, Location)>> _moves;
+	map<string, function<bool(Board board, int turn, Location src, Location dst)>> _moves;
 	int _color;	//1 = white,  0 = black, -1 = empty.
 
 private:
