@@ -6,7 +6,7 @@ class Rook : public Tool {
 public:
 	Rook(int color);
 	virtual ~Rook() = default;
-	virtual int isLegal(Location src, Location dest) override;
+	virtual int isLegal(Board board, int turn, Location src, Location dst) override;
 private:
 	bool _moved;
 };

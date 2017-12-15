@@ -6,5 +6,5 @@ class Empty : public Tool {
 public:
 	Empty();
 	virtual ~Empty() = default;
-	virtual int isLegal(Location src, Location dest) override;
+	virtual int isLegal(Board board, int turn, Location src, Location dest) override;
 };

@@ -1,8 +1,11 @@
 #include "Rook.h"
 
-Rook::Rook(int color) : Tool(color, 'R'), _moved(false) {}
+Rook::Rook(int color) : Tool(color, 'R', vector<int>(VERTICAL, HORIZONTAL)), _moved(false) {}
 
-int isLegal(Location src, Location dest)
+int Rook::isLegal(Board board, int turn, Location src, Location dst)
 {
-
+	if (src.getCol() == dst.getCol())	//checking if the src and the dest are vertical.
+	{
+		
+	}
 }

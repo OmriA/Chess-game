@@ -25,7 +25,7 @@ public:
 	int getColor() const;
 
 protected:
-	virtual int isLegal(Location src, Location dest) = 0;
+	virtual int isLegal(Board board, int turn, Location src, Location dst) = 0;
 	map<string, function<bool(Board, int, Location, Location)>> _moves;
 	int _color;	//1 = white,  0 = black, -1 = empty.
 
