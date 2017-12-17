@@ -13,19 +13,19 @@ Output:	0 - valid move
 		6 - invalid move, invalid tool's movement
 		7 - invalid move, src and dst are the same.
 **/
-int vertical(Board board, int turn, Location src, Location dst)
+char vertical(Board board, int turn, Location src, Location dst)
 {
 	if (src != dst)	//(1)
 	{
-		if (board.getIndex(src.getRow(), src.getCol())->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
+		if (board.getIndex(src)->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
 		{
-			if (board.getIndex(dst.getRow(), dst.getCol())->getColor() != turn)	//checking if dst has no tool from player's tool (3)
+			if (board.getIndex(dst)->getColor() != turn)	//checking if dst has no tool from player's tool (3)
 			{
 				if (src.getRow() > dst.getRow())	//if src is above dst
 				{
 					for (unsigned int i = src.getRow() - 1; i > dst.getRow(); i--)	//checking if there is any tool between src to dst
 					{
-						if (board.getIndex(i, src.getCol())->getSign() != '#')	//checking between src to dst
+						if (board.getIndex(Location(i, src.getCol()))->getSign() != '#')	//checking between src to dst
 						{
 							return INVALID_MOVE;	//check with kfir
 						}
@@ -35,7 +35,7 @@ int vertical(Board board, int turn, Location src, Location dst)
 				{
 					for (unsigned int i = src.getRow() + 1; i < dst.getRow(); i++)	//checking if there is any tool between src to dst
 					{
-						if (board.getIndex(i, src.getCol())->getSign() != '#')	//checking between src to dst
+						if (board.getIndex(Location(i, src.getCol()))->getSign() != '#')	//checking between src to dst
 						{
 							return INVALID_MOVE;	//check with kfir
 						}
@@ -68,19 +68,19 @@ Output:	0 - valid move
 		6 - invalid move, invalid tool's movement
 		7 - invalid move, src and dst are the same.
 **/
-int horizontal(Board board, int turn, Location src, Location dst)
+char horizontal(Board board, int turn, Location src, Location dst)
 {
 	if (src != dst)	//(1)
 	{
-		if (board.getIndex(src.getRow(), src.getCol())->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
+		if (board.getIndex(src)->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
 		{
-			if (board.getIndex(dst.getRow(), dst.getCol())->getColor() != turn)	//checking if dst has no tool from player's tool (3)
+			if (board.getIndex(dst)->getColor() != turn)	//checking if dst has no tool from player's tool (3)
 			{
 				if (src.getCol() > dst.getCol())	//if src is right to dst
 				{
 					for (unsigned int i = src.getCol() - 1; i > dst.getCol(); i--)	//checking if there is any tool between src to dst
 					{
-						if (board.getIndex(i, src.getRow())->getSign() != '#')	//checking between src to dst
+						if (board.getIndex(Location(i, src.getRow()))->getSign() != '#')	//checking between src to dst
 						{
 							return INVALID_MOVE;	//check with kfir
 						}
@@ -90,7 +90,7 @@ int horizontal(Board board, int turn, Location src, Location dst)
 				{
 					for (unsigned int i = src.getCol() + 1; i < dst.getCol(); i++)	//checking if there is any tool between src to dst
 					{
-						if (board.getIndex(i, src.getRow())->getSign() != '#')	//checking between src to dst
+						if (board.getIndex(Location(i, src.getRow()))->getSign() != '#')	//checking between src to dst
 						{
 							return INVALID_MOVE;	//check with kfir
 						}
@@ -118,9 +118,9 @@ Output:	None.
 **/
 Tool::Tool(int color, char sign, vector<int> moves) : _color(color), _sign(sign)
 {
-	if (!color)
+	if (color == BLACK)	//checking if the color is black.
 	{
-		_sign -= 'a' - 'A';
+		_sign += 'a' - 'A';
 	}
 
 	for (unsigned int i = 0; i < moves.size(); i++)
@@ -136,7 +136,7 @@ Tool::Tool(int color, char sign, vector<int> moves) : _color(color), _sign(sign)
 			break;
 
 		case DIAGONAL:
-			_moves["diagonal"] = diagonal;
+			//_moves["diagonal"] = diagonal;
 			break;
 
 		default:
@@ -168,19 +168,16 @@ int Tool::getColor() const
 
 void Tool::move(Board board, Location src, Location dst)
 {
-	int dstRow = dst.getRow(), dstCol = dst.getCol();
-	int srcRow = src.getRow(), srcCol = src.getCol();
-
-	Tool* temp = board.getIndex(dstRow, dstCol);
+	Tool* temp = board.getIndex(dst);
 
 	if (temp->getSign() != '#')	//checking if the tool is eating any other player.
 	{
 		delete temp;
-		board.setIndex(dstRow, dstCol, new Empty());
+		board.setIndex(dst, new Empty());
 	}
 	else
 	{
-		board.setIndex(dstRow, dstCol, board.getIndex(srcRow, srcCol));
-		board.setIndex(srcRow, srcCol, temp);
+		board.setIndex(dst, board.getIndex(src));
+		board.setIndex(src, temp);
 	}
 }

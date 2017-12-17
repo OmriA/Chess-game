@@ -14,7 +14,8 @@ private:
 public:
 	Board();
 	~Board() = default;
-	string getBoardStr() const;
-	Tool* getIndex(const int row,const int col) const;
-	void setIndex(const int row, const int col, const Tool* newTool);
+	void initBoard(const char* str);
+	void printBoard() const;
+	Tool* getIndex(const Location cell) const;
+	void setIndex(const Location cell, Tool* newTool);
 };

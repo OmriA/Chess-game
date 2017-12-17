@@ -7,7 +7,7 @@ public:
 	void setRow(unsigned int row);
 	void setCol(char col);
 	unsigned int getRow() const;
-	char getCol() const;
+	unsigned int getCol() const;
 	bool operator!=(Location other);
 
 private:

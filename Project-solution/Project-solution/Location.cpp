@@ -43,9 +43,9 @@ Getter for the col.
 Input:	None.
 Output:	The location's col.
 **/
-char Location::getCol() const
+unsigned int Location::getCol() const
 {
-	return _col;
+	return _col - 'a';
 }
 
 /**

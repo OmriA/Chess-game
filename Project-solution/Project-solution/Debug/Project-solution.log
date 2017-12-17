@@ -1,22 +1,2 @@
-﻿  Tool.cpp
-c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\empty.h(9): error C2555: 'Empty::isLegal': overriding virtual function return type differs and is not covariant from 'Tool::isLegal'
-  c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\tool.h(15): note: see declaration of 'Tool::isLegal'
-  Empty.cpp
-c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\empty.h(9): error C2555: 'Empty::isLegal': overriding virtual function return type differs and is not covariant from 'Tool::isLegal'
-  c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\tool.h(15): note: see declaration of 'Tool::isLegal'
-  Generating Code...
-  Compiling...
-  Bishop.cpp
-  Generating Code...
-  Compiling...
-  Rook.cpp
-  Queen.cpp
-  Pawn.cpp
-  Knight.cpp
-  King.cpp
-  Board.cpp
-c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\empty.h(9): error C2555: 'Empty::isLegal': overriding virtual function return type differs and is not covariant from 'Tool::isLegal'
-  c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\tool.h(15): note: see declaration of 'Tool::isLegal'
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Player.cpp
+﻿  Source.cpp
+  Project-solution.vcxproj -> C:\Users\magshimim\Desktop\Itay\Magshimim\11\C++\7\Project-solution\Debug\Project-solution.exe
