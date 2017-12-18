@@ -2,7 +2,7 @@
 
 Rook::Rook(int color) : Tool(color, 'R'), _moved(false) {}
 
-char Rook::isLegal(Board board, int turn, Location src, Location dst)
+char Rook::isLegal(Board& board, int turn, Location src, Location dst)
 {
 	int flag = 0;
 	int dstRow = dst.getRow(), dstCol = dst.getCol();

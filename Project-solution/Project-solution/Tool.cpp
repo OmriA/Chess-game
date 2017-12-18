@@ -35,7 +35,7 @@ char Tool::vertical(Board board, int turn, Location src, Location dst)
 				{
 					for (unsigned int i = src.getRow() + 1; i < dst.getRow(); i++)	//checking if there is any tool between src to dst
 					{
-						if (board.getIndex(Location(i, src.getCol()))->getSign() != '#')	//checking between src to dst
+						if (board.getIndex(Location(i, src.getCol() + 'a'))->getSign() != '#')	//checking between src to dst
 						{
 							return INVALID_MOVE;	//check with kfir
 						}
@@ -80,7 +80,7 @@ char Tool::horizontal(Board board, int turn, Location src, Location dst)
 				{
 					for (unsigned int i = src.getCol() - 1; i > dst.getCol(); i--)	//checking if there is any tool between src to dst
 					{
-						if (board.getIndex(Location(i, src.getRow()))->getSign() != '#')	//checking between src to dst
+						if (board.getIndex(Location(src.getRow(), i + 'a'))->getSign() != '#')	//checking between src to dst
 						{
 							return INVALID_MOVE;
 						}
@@ -88,14 +88,15 @@ char Tool::horizontal(Board board, int turn, Location src, Location dst)
 				}
 				else	//src is left to dst.
 				{
-					for (unsigned int i = src.getCol() + 1; i < dst.getCol(); i++)	//checking if there is any tool between src to dst
+					for (unsigned int i = src.getCol() + 2; i < dst.getCol() + 1; i++)	//checking if there is any tool between src to dst
 					{
-						if (board.getIndex(Location(i, src.getRow()))->getSign() != '#')	//checking between src to dst
+						if (board.getIndex(Location(src.getRow(), i + 'a'))->getSign() != '#')	//checking between src to dst
 						{
 							return INVALID_MOVE;
 						}
 					}
 				}
+				return VALID_MOVE;
 			}
 			else	//(3)
 			{
@@ -144,7 +145,7 @@ int Tool::getColor() const
 	return _color;
 }
 
-void Tool::move(Board board, Location src, Location dst)
+void Tool::move(Board& board, Location src, Location dst)
 {
 	Tool* temp = board.getIndex(dst);
 

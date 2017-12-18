@@ -42,9 +42,7 @@ void main()
 	//strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
 	strcpy_s(msgToGraphics, "rrrrrrrrrrrrrrrr################################RRRRRRRRRRRRRRRR1"); // just example...
 	board.initBoard(msgToGraphics);
-	board.printBoard();
 	turn = int(msgToGraphics[64] - '0');
-
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
 	// get message from graphics
@@ -52,12 +50,13 @@ void main()
 
 	while (msgFromGraphics != "quit")
 	{
+		board.printBoard();
 		char flag = 0;
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		
-		Location src(unsigned int(msgFromGraphics[1] - '0'), msgFromGraphics[0]);
-		Location dst(unsigned int(msgFromGraphics[3] - '0'), msgFromGraphics[2]);
+		Location src(unsigned int(msgFromGraphics[1] - '1'), msgFromGraphics[0]);
+		Location dst(unsigned int(msgFromGraphics[3] - '1'), msgFromGraphics[2]);
 
 		flag = board.getIndex(src)->isLegal(board, turn, src, dst);
 		msgToGraphics[0] = flag;

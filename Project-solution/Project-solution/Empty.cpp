@@ -7,7 +7,7 @@ Output:	None.
 **/
 Empty::Empty() : Tool(EMPTY, '#') {}
 
-char Empty::isLegal(Board board, int turn, Location src, Location dest)
+char Empty::isLegal(Board& board, int turn, Location src, Location dest)
 {
 	return SRC_HAS_NO_TURNS_TOOL;
 }
