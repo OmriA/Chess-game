@@ -116,7 +116,7 @@ Output:	0 - valid move
 		6 - invalid move, invalid tool's movement
 		7 - invalid move, src and dst are the same.
 **/
-char diagonalUp(Board board, int turn, Location src, Location dst)
+char Tool::diagonalUp(Board board, int turn, Location src, Location dst)
 {
 	if (src != dst)	//(1)
 	{
@@ -128,16 +128,23 @@ char diagonalUp(Board board, int turn, Location src, Location dst)
 				{
 					for (unsigned int i = 0; i < BOARD_SIZE - dst.getCol() - 1; i++)
 					{
-						if (board.)
+						if (board.getIndex(Location(src.getRow() + i, src.getCol() + i))->getSign() == '#')
 						{
-
+							return INVALID_MOVE;
 						}
 					}
 				}
 				else	//checking if going down
 				{
-
+					for (unsigned int i = 0; i < BOARD_SIZE - dst.getCol() - 1; i++)
+					{
+						if (board.getIndex(Location(src.getRow() - i, src.getCol() - i))->getSign() == '#')
+						{
+							return INVALID_MOVE;
+						}
+					}
 				}
+				return VALID_MOVE;
 			}
 			else	//(3)
 			{

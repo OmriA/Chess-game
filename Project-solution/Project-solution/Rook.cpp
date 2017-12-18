@@ -8,9 +8,7 @@ char Rook::isLegal(Board& board, int turn, Location src, Location dst)
 	int dstRow = dst.getRow(), dstCol = dst.getCol();
 	int srcRow = src.getRow(), srcCol = src.getCol();
 
-	_moved = true;
-
-	if (turn == board.getIndex(src)->getColor())
+	if (board.getIndex(src)->getColor() == turn)
 	{
 		if (srcCol == dstCol)	//checking if the src and the dest are vertical.
 		{
@@ -33,6 +31,7 @@ char Rook::isLegal(Board& board, int turn, Location src, Location dst)
 	if (flag == VALID_CHECK || flag == VALID_MOVE)
 	{
 		move(board, src, dst);
+		_moved = true;
 	}
 
 	return flag;

@@ -64,6 +64,26 @@ void Board::initBoard(const char* str)
 			setIndex(Location(row, char(col + 'a')), new Rook(color));
 			break;
 
+		case 'B':
+			setIndex(Location(row, char(col + 'a')), new Bishop(color));
+			break;
+
+		//case 'K':
+		//	setIndex(Location(row, char(col + 'a')), new King(color));
+		//	break;
+
+		//case 'N':
+		//	setIndex(Location(row, char(col + 'a')), new Knight(color));
+		//	break;
+
+		//case 'Q':
+		//	setIndex(Location(row, char(col + 'a')), new Queen(color));
+		//	break;
+
+		//case 'P':
+		//	setIndex(Location(row, char(col + 'a')), new Pawn(color));
+		//	break;
+
 		default:
 			setIndex(Location(row, char(col + 'a')), new Empty());
 			break;
