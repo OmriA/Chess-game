@@ -10,6 +10,7 @@ class Tool;
 class Board {
 private:
 	Tool* _board[BOARD_SIZE][BOARD_SIZE];
+	void reverseBoard();
 
 public:
 	Board();

@@ -7,14 +7,14 @@
 using namespace std;
 void main()
 {
-	
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	srand(time_t(NULL));
 
 	Board board;
 	Pipe p;
 	bool isConnect = p.connect();
 	int turn = 0;
-	
+
 	string ans;
 	while (!isConnect)
 	{
@@ -28,13 +28,13 @@ void main()
 			Sleep(5000);
 			isConnect = p.connect();
 		}
-		else 
+		else
 		{
 			p.close();
 			return;
 		}
 	}
-	
+
 
 	char msgToGraphics[1024];
 	// msgToGraphics should contain the board string accord the protocol
@@ -42,30 +42,49 @@ void main()
 	//strcpy_s(msgToGraphics, "rnbkqbnrpppppppp################################PPPPPPPPRNBKQBNR1"); // just example...
 	strcpy_s(msgToGraphics, "rrrrrrrrrrrrrrrr################################RRRRRRRRRRRRRRRR1"); // just example...
 	board.initBoard(msgToGraphics);
-	turn = int(msgToGraphics[64] - '0');
+	if (msgToGraphics[64] != '0')
+	{
+		turn = 0;
+	}
+	else
+	{
+		turn = 1;
+	}
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
 	// get message from graphics
+	board.printBoard();
 	string msgFromGraphics = p.getMessageFromGraphics();
 
 	while (msgFromGraphics != "quit")
 	{
-		board.printBoard();
 		char flag = 0;
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
-		
-		Location src(unsigned int(msgFromGraphics[1] - '1'), msgFromGraphics[0]);
-		Location dst(unsigned int(msgFromGraphics[3] - '1'), msgFromGraphics[2]);
+
+		Location src(BOARD_SIZE - 1 - unsigned int(msgFromGraphics[1] - '1'), msgFromGraphics[0]);
+		Location dst(BOARD_SIZE - 1 - unsigned int(msgFromGraphics[3] - '1'), msgFromGraphics[2]);
 
 		flag = board.getIndex(src)->isLegal(board, turn, src, dst);
 		msgToGraphics[0] = flag;
 		msgToGraphics[1] = 0;	// msgToGraphics should contain the result of the operation
 
 		// return result to graphics		
-		p.sendMessageToGraphics(msgToGraphics);   
+		p.sendMessageToGraphics(msgToGraphics);
 
 		// get message from graphics
+		if (flag == '0' || flag == '1')
+		{
+			board.printBoard();
+			if (turn)
+			{
+				turn = 0;
+			}
+			else
+			{
+				turn = 1;
+			}
+		}
 		msgFromGraphics = p.getMessageFromGraphics();
 	}
 

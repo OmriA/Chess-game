@@ -69,5 +69,20 @@ void Board::initBoard(const char* str)
 			break;
 		}
 	}
+	reverseBoard();
+}
+
+void Board::reverseBoard()
+{
+	Tool* temp = nullptr;
+	for (unsigned int i = 0; i < BOARD_SIZE / 2; i++)
+	{
+		for (unsigned int j = 0; j < BOARD_SIZE; j++)
+		{
+			temp = _board[i][j];
+			_board[i][j] = _board[i][BOARD_SIZE - j - 1];
+			_board[i][BOARD_SIZE - j - 1] = temp;
+		}
+	}
 
 }

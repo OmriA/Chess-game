@@ -17,41 +17,34 @@ char Tool::vertical(Board board, int turn, Location src, Location dst)
 {
 	if (src != dst)	//(1)
 	{
-		if (board.getIndex(src)->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
+		if (board.getIndex(dst)->getColor() != turn)	//checking if dst has no tool from player's tool (2)
 		{
-			if (board.getIndex(dst)->getColor() != turn)	//checking if dst has no tool from player's tool (3)
+			if (src.getRow() > dst.getRow())	//if src is above dst (3)
 			{
-				if (src.getRow() > dst.getRow())	//if src is above dst
+				for (unsigned int i = src.getRow() - 1; i > dst.getRow(); i--)	//checking if there is any tool between src to dst
 				{
-					for (unsigned int i = src.getRow() - 1; i > dst.getRow(); i--)	//checking if there is any tool between src to dst
+					if (board.getIndex(Location(i, src.getCol() + 'a'))->getSign() != '#')	//checking between src to dst
 					{
-						if (board.getIndex(Location(i, src.getCol() + 'a'))->getSign() != '#')	//checking between src to dst
-						{
-							return INVALID_MOVE;	//check with kfir
-						}
+						return INVALID_MOVE;
 					}
 				}
-				else	//src is underneath dst
-				{
-					for (unsigned int i = src.getRow() + 1; i < dst.getRow(); i++)	//checking if there is any tool between src to dst
-					{
-						if (board.getIndex(Location(i, src.getCol() + 'a'))->getSign() != '#')	//checking between src to dst
-						{
-							return INVALID_MOVE;	//check with kfir
-						}
-					}
-				}	//end of else
-				return VALID_MOVE;
 			}
+			else	//src is underneath dst (3)
+			{
+				for (unsigned int i = src.getRow() + 1; i < dst.getRow(); i++)	//checking if there is any tool between src to dst
+				{
+					if (board.getIndex(Location(i, src.getCol() + 'a'))->getSign() != '#')	//checking between src to dst
+					{
+						return INVALID_MOVE;
+					}
+				}
+			}	//end of else
+			return VALID_MOVE;
 		}
-		else	//(3)
+		else	//(2)
 		{
 			return DST_HAS_TURNS_TOOL;
 		}
-	}
-	else	//(2)
-	{
-		return SRC_HAS_NO_TURNS_TOOL;
 	}
 	return SAME_SRC_DST;	//(1)
 }
@@ -88,7 +81,7 @@ char Tool::horizontal(Board board, int turn, Location src, Location dst)
 				}
 				else	//src is left to dst.
 				{
-					for (unsigned int i = src.getCol() + 2; i < dst.getCol() + 1; i++)	//checking if there is any tool between src to dst
+					for (unsigned int i = src.getCol() + 1; i < dst.getCol(); i++)	//checking if there is any tool between src to dst
 					{
 						if (board.getIndex(Location(src.getRow(), i + 'a'))->getSign() != '#')	//checking between src to dst
 						{
@@ -97,6 +90,89 @@ char Tool::horizontal(Board board, int turn, Location src, Location dst)
 					}
 				}
 				return VALID_MOVE;
+			}
+			else	//(3)
+			{
+				return DST_HAS_TURNS_TOOL;
+			}
+		}
+		else	//(2)
+		{
+			return SRC_HAS_NO_TURNS_TOOL;
+		}
+	}
+	return SAME_SRC_DST;	//(1)
+}
+
+/**
+Checking if the tool can move in it's up diagonal y=x+b
+Input:	board - the board
+		turn - whose turn
+		src - the source location
+		dst - the destination location
+Output:	0 - valid move
+		2 - invalid move, src hasn't turn's tool
+		3 - invalid move, dst has turn's tool
+		6 - invalid move, invalid tool's movement
+		7 - invalid move, src and dst are the same.
+**/
+char diagonalUp(Board board, int turn, Location src, Location dst)
+{
+	if (src != dst)	//(1)
+	{
+		if (board.getIndex(src)->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
+		{
+			if (board.getIndex(dst)->getColor() != turn)	//checking if dst has no tool from player's tool (3)
+			{
+				if (src.getCol() < dst.getCol())	//checking if going up
+				{
+					for (unsigned int i = 0; i < BOARD_SIZE - dst.getCol() - 1; i++)
+					{
+						if (board.)
+						{
+
+						}
+					}
+				}
+				else	//checking if going down
+				{
+
+				}
+			}
+			else	//(3)
+			{
+				return DST_HAS_TURNS_TOOL;
+			}
+		}
+		else	//(2)
+		{
+			return SRC_HAS_NO_TURNS_TOOL;
+		}
+	}
+	return SAME_SRC_DST;	//(1)
+}
+
+/**
+Checking if the tool can move in it's down diagonal. y=-x+b
+Input:	board - the board
+		turn - whose turn
+		src - the source location
+		dst - the destination location
+Output:	0 - valid move
+		2 - invalid move, src hasn't turn's tool
+		3 - invalid move, dst has turn's tool
+		6 - invalid move, invalid tool's movement
+		7 - invalid move, src and dst are the same.
+**/
+char diagonalDown(Board board, int turn, Location src, Location dst)
+{
+	if (src != dst)	//(1)
+	{
+		if (board.getIndex(src)->getColor() == turn)	//checking if the tool int the src location is the player's tool (2)
+		{
+			if (board.getIndex(dst)->getColor() != turn)	//checking if dst has no tool from player's tool (3)
+			{
+
 			}
 			else	//(3)
 			{
@@ -149,14 +225,14 @@ void Tool::move(Board& board, Location src, Location dst)
 {
 	Tool* temp = board.getIndex(dst);
 
+	board.setIndex(dst, board.getIndex(src));
 	if (temp->getSign() != '#')	//checking if the tool is eating any other player.
 	{
 		delete temp;
-		board.setIndex(dst, new Empty());
+		board.setIndex(src, new Empty());
 	}
 	else
 	{
-		board.setIndex(dst, board.getIndex(src));
 		board.setIndex(src, temp);
 	}
 }
