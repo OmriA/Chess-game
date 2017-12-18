@@ -9,6 +9,7 @@ public:
 	unsigned int getRow() const;
 	unsigned int getCol() const;
 	bool operator!=(Location other);
+	int operator-(Location other);
 
 private:
 	char _col;
