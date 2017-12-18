@@ -10,11 +10,11 @@ char Rook::isLegal(Board board, int turn, Location src, Location dst)
 
 	if (srcCol == dstCol)	//checking if the src and the dest are vertical.
 	{
-		vertical(board, turn, src, dst);
+		flag = vertical(board, turn, src, dst);
 	}
 	else if (srcRow == dstRow)	//checking if the src and the dest are horizontal.
 	{
-		horizontal(board, turn, src, dst);
+		flag = horizontal(board, turn, src, dst);
 	}
 	else	//the move is not vertical or horizontal.
 	{

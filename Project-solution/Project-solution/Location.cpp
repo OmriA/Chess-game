@@ -55,5 +55,5 @@ Output:	true if they are different, false if not.
 **/
 bool Location::operator!=(Location other)
 {
-	return _col != other._col && _row != other._row;
+	return _col != other._col || _row != other._row;
 }

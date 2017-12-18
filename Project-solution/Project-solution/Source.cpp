@@ -52,7 +52,7 @@ void main()
 
 	while (msgFromGraphics != "quit")
 	{
-		char flag;
+		char flag = 0;
 		// should handle the string the sent from graphics
 		// according the protocol. Ex: e2e4           (move e2 to e4)
 		
@@ -60,9 +60,8 @@ void main()
 		Location dst(unsigned int(msgFromGraphics[3] - '0'), msgFromGraphics[2]);
 
 		flag = board.getIndex(src)->isLegal(board, turn, src, dst);
-		strcpy_s(msgToGraphics, "" + flag); // msgToGraphics should contain the result of the operation
-
-
+		msgToGraphics[0] = flag;
+		msgToGraphics[1] = 0;	// msgToGraphics should contain the result of the operation
 
 		// return result to graphics		
 		p.sendMessageToGraphics(msgToGraphics);   

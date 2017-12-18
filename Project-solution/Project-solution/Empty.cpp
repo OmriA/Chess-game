@@ -5,7 +5,7 @@ Constractor to the empty tool.
 Input:	None.
 Output:	None.
 **/
-Empty::Empty() : Tool(EMPTY, '#', vector<int>()) {}
+Empty::Empty() : Tool(EMPTY, '#') {}
 
 char Empty::isLegal(Board board, int turn, Location src, Location dest)
 {

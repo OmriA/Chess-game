@@ -41,7 +41,6 @@ Tool* Board::getIndex(const Location cell) const
 
 void Board::setIndex(const Location cell, Tool* newTool)
 {
-	delete getIndex(cell);
 	_board[cell.getRow()][cell.getCol()] = newTool;
 }
 
