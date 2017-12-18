@@ -10,9 +10,13 @@ char Bishop::isLegal(Board& board, int turn, Location src, Location dst)
 
 	if (board.getIndex(src)->getColor() == turn)
 	{
-		if ((srcCol > dstCol && srcRow < srcRow) || (srcCol < dstCol && srcRow < srcRow))	//is y=x+b
+		if ((srcRow < dstRow && srcCol > dstCol) || (srcRow > dstRow && srcCol < dstCol)) //checking if y=x+b
 		{
-			diagonalUp(board, turn, src, dst);
+			flag = diagonalUp(board, turn, src, dst);
+		}
+		else if ((srcRow > dstRow && srcCol > dstCol) || (srcRow < dstRow && srcCol < dstCol)) //cheking if y=-x+b
+		{
+			// flag = diagonalDown(board, turn, src, dst);
 		}
 		else	//the move is not a diagonal.
 		{

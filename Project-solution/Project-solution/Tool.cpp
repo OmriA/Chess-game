@@ -126,9 +126,9 @@ char Tool::diagonalUp(Board board, int turn, Location src, Location dst)
 			{
 				if (src.getCol() < dst.getCol())	//checking if going up
 				{
-					for (unsigned int i = 0; i < BOARD_SIZE - dst.getCol() - 1; i++)
+					for (unsigned int i = 0; i < dst.getCol() - src.getCol() - 1; i++)
 					{
-						if (board.getIndex(Location(src.getRow() + i, src.getCol() + i))->getSign() == '#')
+						if (board.getIndex(Location(src.getRow() + i, src.getCol() + i + 'a'))->getSign() == '#')
 						{
 							return INVALID_MOVE;
 						}
@@ -136,9 +136,9 @@ char Tool::diagonalUp(Board board, int turn, Location src, Location dst)
 				}
 				else	//checking if going down
 				{
-					for (unsigned int i = 0; i < BOARD_SIZE - dst.getCol() - 1; i++)
+					for (unsigned int i = 0; i < src.getCol() - dst.getCol() - 1; i++)
 					{
-						if (board.getIndex(Location(src.getRow() - i, src.getCol() - i))->getSign() == '#')
+						if (board.getIndex(Location(src.getRow() - i - 1, src.getCol() - i + 'a' - 1))->getSign() == '#')
 						{
 							return INVALID_MOVE;
 						}
