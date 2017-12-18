@@ -18,15 +18,19 @@ char King::isLegal(Board& board, int turn, Location src, Location dst)
 		{
 			flag = horizontal(board, turn, src, dst);
 		}
-		else if (abs(dst - src == 2))
+		else if (abs(dst - src) == 0)
 		{
-			if ((srcCol > dstCol && srcRow < srcRow) || (srcCol < dstCol && srcRow < srcRow))	//checking if y=x
+			if ((srcRow < dstRow && srcCol > dstCol) || (srcRow > dstRow && srcCol < dstCol))	//checking if y=x+b
 			{
-
+				flag = diagonalUp(board, turn, src, dst);
 			}
-			else	//cheking if y=-x
+			else if ((srcRow > dstRow && srcCol > dstCol) || (srcRow < dstRow && srcCol < dstCol))	//cheking if y=-x+b
 			{
-
+				flag = diagonalDown(board, turn, src, dst);
+			}
+			else	//U ARE NOT SUPPOSE TO GET HERE! 
+			{
+				return INVALID_MOVE;
 			}
 		}
 		else	//the move isnt an available move for this tool.
