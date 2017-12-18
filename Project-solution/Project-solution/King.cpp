@@ -10,11 +10,11 @@ char King::isLegal(Board& board, int turn, Location src, Location dst)
 
 	if (board.getIndex(src)->getColor() == turn)
 	{
-		if ((dstRow - srcRow == 1 || srcRow - dstRow == -1) && srcCol == dstCol)	//checking if the src and the dest are vertical and the move is a single move.
+		if (abs(dstRow - srcRow) == 1 && srcCol == dstCol)	//checking if the src and the dest are vertical and the move is a single move.
 		{
 			flag = vertical(board, turn, src, dst);
 		}
-		else if ((dstCol - srcCol == 1 || srcCol - dstCol == -1) && srcRow == dstRow)	//checking if the src and the dest are horizontal and the move is a single move.
+		else if (abs(dstCol - srcCol) == 1 && srcRow == dstRow)	//checking if the src and the dest are horizontal and the move is a single move.
 		{
 			flag = horizontal(board, turn, src, dst);
 		}

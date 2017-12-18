@@ -10,7 +10,26 @@ char Knight::isLegal(Board& board, int turn, Location src, Location dst)
 
 	if (board.getIndex(src)->getColor() == turn)
 	{
-		
+		if (abs(Location(srcRow, srcCol + 1) - dst) == 2 && (srcRow != dstRow || srcCol != dstCol))
+		{
+			flag = knightMove(board, turn, src, dst);
+		}
+		else if (abs(Location(srcRow, srcCol + 2) - dst) == 1 && (srcRow != dstRow || srcCol != dstCol))
+		{
+			flag = knightMove(board, turn, src, dst);
+		}
+		else if (abs(Location(srcRow, srcCol - 1) - dst) == 2 && (srcRow != dstRow || srcCol != dstCol))
+		{
+			flag = knightMove(board, turn, src, dst);
+		}
+		else if (abs(Location(srcRow, srcCol - 2) - dst) == 1 && (srcRow != dstRow || srcCol != dstCol))
+		{
+			flag = knightMove(board, turn, src, dst);
+		}
+		else
+		{
+			return INVALID_MOVE;
+		}
 	}
 	else
 	{
