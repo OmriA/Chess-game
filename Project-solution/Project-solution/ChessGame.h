@@ -1,15 +1,11 @@
 #pragma once
 
 #include <iostream>
-#include <functional>
 #include <string>
-#include <map>
 #include <vector>
 #include <exception>
 #include "Location.h"
 
-using std::function;
-using std::map;
 using std::string;
 using std::vector;
 

@@ -13,7 +13,7 @@ Output:	0 - valid move
 		6 - invalid move, invalid tool's movement
 		7 - invalid move, src and dst are the same.
 **/
-char vertical(Board board, int turn, Location src, Location dst)
+char Tool::vertical(Board board, int turn, Location src, Location dst)
 {
 	if (src != dst)	//(1)
 	{
@@ -68,7 +68,7 @@ Output:	0 - valid move
 		6 - invalid move, invalid tool's movement
 		7 - invalid move, src and dst are the same.
 **/
-char horizontal(Board board, int turn, Location src, Location dst)
+char Tool::horizontal(Board board, int turn, Location src, Location dst)
 {
 	if (src != dst)	//(1)
 	{
@@ -116,33 +116,11 @@ Input:	color - the color of the tool
 		sign - the sign of the tool
 Output:	None.
 **/
-Tool::Tool(int color, char sign, vector<int> moves) : _color(color), _sign(sign)
+Tool::Tool(int color, char sign) : _color(color), _sign(sign)
 {
 	if (color == BLACK)	//checking if the color is black.
 	{
 		_sign += 'a' - 'A';
-	}
-
-	for (unsigned int i = 0; i < moves.size(); i++)
-	{
-		switch (moves[i])
-		{
-		case VERTICAL:
-			_moves["vertical"] = vertical;
-			break;
-
-		case HORIZONTAL:
-			_moves["horizontal"] = horizontal;
-			break;
-
-		case DIAGONAL:
-			//_moves["diagonal"] = diagonal;
-			break;
-
-		default:
-			throw std::invalid_argument("Vector of moves has an invalid move value: " + moves[i]);
-			break;
-		}
 	}
 }
 

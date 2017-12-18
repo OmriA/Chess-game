@@ -6,7 +6,7 @@ class Board;
 
 class Tool {
 public:
-	Tool(int color, char sign, vector<int> moves);
+	Tool(int color, char sign);
 	virtual ~Tool() = default;
 	char getSign() const;
 	int getColor() const;
@@ -14,7 +14,8 @@ public:
 	virtual char isLegal(Board board, int turn, Location src, Location dst) = 0;
 
 protected:
-	map<string, function<char(Board board, int turn, Location src, Location dst)>> _moves;
+	char vertical(Board board, int turn, Location src, Location dst);
+	char horizontal(Board board, int turn, Location src, Location dst);
 	int _color;	//white = 1,  black = 0, empty = -1.
 
 private:
