@@ -128,7 +128,7 @@ char Tool::diagonalUp(Board board, int turn, Location src, Location dst)
 				{
 					for (unsigned int i = 0; i < dst.getCol() - src.getCol() - 1; i++)
 					{
-						if (board.getIndex(Location(src.getRow() + i, src.getCol() + i + 'a'))->getSign() == '#')
+						if (board.getIndex(Location(src.getRow() - i - 1, src.getCol() + i + 1 + 'a'))->getSign() != '#')
 						{
 							return INVALID_MOVE;
 						}
@@ -138,7 +138,7 @@ char Tool::diagonalUp(Board board, int turn, Location src, Location dst)
 				{
 					for (unsigned int i = 0; i < src.getCol() - dst.getCol() - 1; i++)
 					{
-						if (board.getIndex(Location(src.getRow() - i - 1, src.getCol() - i + 'a' - 1))->getSign() == '#')
+						if (board.getIndex(Location(src.getRow() + i + 1, src.getCol() - i - 1 + 'a'))->getSign() != '#')
 						{
 							return INVALID_MOVE;
 						}
@@ -171,7 +171,7 @@ Output:	0 - valid move
 		6 - invalid move, invalid tool's movement
 		7 - invalid move, src and dst are the same.
 **/
-char diagonalDown(Board board, int turn, Location src, Location dst)
+char Tool::diagonalDown(Board board, int turn, Location src, Location dst)
 {
 	if (src != dst)	//(1)
 	{
@@ -179,7 +179,27 @@ char diagonalDown(Board board, int turn, Location src, Location dst)
 		{
 			if (board.getIndex(dst)->getColor() != turn)	//checking if dst has no tool from player's tool (3)
 			{
-
+				if (src.getRow() > dst.getRow() && src.getCol() > dst.getCol())	//checking if going up.
+				{
+					for (unsigned int i = 0; i < src.getRow() - dst.getRow() - 1; i++)
+					{
+						if (board.getIndex(Location(src.getRow() - i - 1, src.getCol() - i - 1 + 'a'))->getSign() != '#')
+						{
+							return INVALID_MOVE;
+						}
+					}
+				}
+				else	//checking if going down
+				{
+					for (unsigned int i = 0; i < dst.getRow() - src.getRow() - 1; i++)
+					{
+						if (board.getIndex(Location(src.getRow() + i + 1, src.getCol() + i + 1 + 'a'))->getSign() != '#')
+						{
+							return INVALID_MOVE;
+						}
+					}
+				}
+				return VALID_MOVE;
 			}
 			else	//(3)
 			{

@@ -60,5 +60,5 @@ bool Location::operator!=(Location other)
 
 int Location::operator-(Location other)
 {
-	return _row - other.getRow() + _col - other.getCol();
+	return getRow() - other.getRow() + getCol() - other.getCol();
 }
