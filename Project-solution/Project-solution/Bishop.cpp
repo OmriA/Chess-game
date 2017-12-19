@@ -5,7 +5,7 @@ Constractor for the bishop.
 Input:	color - the color of the tool.
 Output:	None.
 **/
-Bishop::Bishop(int color) : Tool(color, 'B') {}
+Bishop::Bishop(int color, unsigned int row, char col) : Tool(color, 'B', row, col) {}
 
 /**
 Checks if the bishop can move from the source location to the destination location.

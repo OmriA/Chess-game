@@ -6,7 +6,7 @@ class Board;
 
 class Tool {
 public:
-	Tool(int color, char sign);
+	Tool(int color, char sign, unsigned int row, char col);
 	virtual ~Tool() = default;
 	char getSign() const;
 	int getColor() const;
@@ -21,6 +21,7 @@ protected:
 	char mainCheck(Board board, int turn, Location src, Location dst);
 	char knightMove(Board board, int turn, Location src, Location dst);
 	int _color;	//white = 1,  black = 0, empty = -1.
+	Location _pos;
 
 private:
 	char _sign;

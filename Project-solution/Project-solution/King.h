@@ -4,7 +4,7 @@
 
 class King : public Tool {
 public:
-	King(int color);
+	King(int color, unsigned int row, char col);
 	virtual ~King() = default;
 	virtual char isLegal(Board& board, int turn, Location src, Location dst) override;
 
