@@ -26,7 +26,6 @@ Board::~Board()
 			delete _board[i][j];
 		}
 	}
-	std::cout << "Bye Bye!" << std::endl;
 }
 
 /**
@@ -50,12 +49,15 @@ Tool* Board::getIndex(const Location cell) const
 {
 	return _board[cell.getRow()][cell.getCol()];
 }
-
 void Board::setIndex(const Location cell, Tool* newTool)
 {
 	_board[cell.getRow()][cell.getCol()] = newTool;
 }
-
+/**
+Getting a string of the board and initzalsing it into the board
+Input:	str - the str from frontend
+Output:	None.
+**/
 void Board::initBoard(const char* str)
 {
 	for (unsigned int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++)
@@ -103,7 +105,11 @@ void Board::initBoard(const char* str)
 	}
 	reverseBoard();
 }
-
+/**
+Reversing the board
+Input:	None.
+Output:	None.
+**/
 void Board::reverseBoard()
 {
 	Tool* temp = nullptr;
@@ -116,5 +122,4 @@ void Board::reverseBoard()
 			_board[i][BOARD_SIZE - j - 1] = temp;
 		}
 	}
-
 }
