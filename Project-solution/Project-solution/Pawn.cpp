@@ -1,5 +1,8 @@
 #include "Pawn.h"
 
+extern Player pb;
+extern Player pw;
+
 /**
 Constractor for the pawn.
 Input:	color - the color of the tool.
@@ -79,10 +82,38 @@ char Pawn::isLegal(Board& board, int turn, Location src, Location dst, bool test
 		return SRC_HAS_NO_TURNS_TOOL;
 	}
 
-	if ((flag == VALID_CHECK || flag == VALID_MOVE) && !test)
+	if ((flag == VALID_MOVE) && !test)
 	{
 		move(board, src, dst);
-		_moved = true;
+	}
+
+	if (turn == pb.getColor() && !test)
+	{
+		if (pw.getKing()->check(board))
+		{
+			flag = VALID_CHECK;
+		}
+		if (pb.getKing()->check(board))
+		{
+			flag = INVALID_CHECK;
+		}
+	}
+
+	if (turn == pw.getColor() && !test)
+	{
+		if (pb.getKing()->check(board))
+		{
+			flag = VALID_CHECK;
+		}
+		if (pw.getKing()->check(board))
+		{
+			flag = INVALID_CHECK;
+		}
+	}
+
+	if (flag == INVALID_CHECK)
+	{
+		move(board, dst, src);
 	}
 
 	return flag;

@@ -1,5 +1,8 @@
 #include "Knight.h"
 
+extern Player pb;
+extern Player pw;
+
 /**
 Constractor for the knight.
 Input:	color - the color of the tool.
@@ -27,19 +30,19 @@ char Knight::isLegal(Board& board, int turn, Location src, Location dst, bool te
 
 	if (board.getIndex(src)->getColor() == turn)
 	{
-		if (abs(Location(srcRow, srcCol + 'a' + 1) - dst) == 2 && (srcRow != dstRow && srcCol != dstCol))	//*in knight.txt (1)
+		if (abs(Location(srcRow, srcCol + 'a' + 1) - dst) == 2 && (srcRow != dstRow && srcCol != dstCol) && abs(srcRow - dstRow) == 2)	//*in knight.txt (1)
 		{
 			flag = knightMove(board, turn, src, dst);
 		}
-		else if (abs(Location(srcRow, srcCol + 'a' + 2) - dst) == 1 && (srcRow != dstRow && srcCol != dstCol))	//*in knight.txt (2)
+		else if (abs(Location(srcRow, srcCol + 'a' + 2) - dst) == 1 && (srcRow != dstRow && srcCol != dstCol) && abs(srcRow - dstRow) == 1)	//*in knight.txt (2)
 		{
 			flag = knightMove(board, turn, src, dst);
 		}
-		else if (abs(Location(srcRow, srcCol + 'a' - 1) - dst) == 2 && (srcRow != dstRow && srcCol != dstCol))	//*in knight.txt (3)
+		else if (abs(Location(srcRow, srcCol + 'a' - 1) - dst) == 2 && (srcRow != dstRow && srcCol != dstCol) && abs(srcRow - dstRow) == 2)	//*in knight.txt (3)
 		{
 			flag = knightMove(board, turn, src, dst);
 		}
-		else if (abs(Location(srcRow, srcCol + 'a' - 2) - dst) == 1 && (srcRow != dstRow && srcCol != dstCol))	//*in knight.txt (4)
+		else if (abs(Location(srcRow, srcCol + 'a' - 2) - dst) == 1 && (srcRow != dstRow && srcCol != dstCol) && abs(srcRow - dstRow) == 1)	//*in knight.txt (4)
 		{
 			flag = knightMove(board, turn, src, dst);
 		}
@@ -53,9 +56,38 @@ char Knight::isLegal(Board& board, int turn, Location src, Location dst, bool te
 		return SRC_HAS_NO_TURNS_TOOL;
 	}
 
-	if ((flag == VALID_CHECK || flag == VALID_MOVE) && !test)
+	if ((flag == VALID_MOVE) && !test)
 	{
 		move(board, src, dst);
+	}
+
+	if (turn == pb.getColor() && !test)
+	{
+		if (pw.getKing()->check(board))
+		{
+			flag = VALID_CHECK;
+		}
+		if (pb.getKing()->check(board))
+		{
+			flag = INVALID_CHECK;
+		}
+	}
+
+	if (turn == pw.getColor() && !test)
+	{
+		if (pb.getKing()->check(board))
+		{
+			flag = VALID_CHECK;
+		}
+		if (pw.getKing()->check(board))
+		{
+			flag = INVALID_CHECK;
+		}
+	}
+
+	if (flag == INVALID_CHECK)
+	{
+		move(board, dst, src);
 	}
 
 	return flag;
