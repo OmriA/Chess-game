@@ -64,5 +64,5 @@ Output:	the output in int of Location - Location
 **/
 int Location::operator-(Location other)
 {
-	return getRow() - other.getRow() + getCol() - other.getCol();
+	return (getRow() + getCol()) - (other.getRow() + other.getCol());
 }

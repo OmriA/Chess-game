@@ -7,6 +7,18 @@ Output:	None.
 **/
 Knight::Knight(int color) : Tool(color, 'N') {}
 
+/**
+Checks if the knight can move from the source location to the destination location.
+Input:	board - the board
+		turn - whose turn
+		src - the source location
+		dst - the destination location
+Output:	0 - valid move
+		2 - invalid move, src hasn't turn's tool
+		3 - invalid move, dst has turn's tool
+		6 - invalid move, invalid tool's movement
+		7 - invalid move, src and dst are the same.
+**/
 char Knight::isLegal(Board& board, int turn, Location src, Location dst)
 {
 	char flag = 0;
@@ -15,28 +27,28 @@ char Knight::isLegal(Board& board, int turn, Location src, Location dst)
 
 	if (board.getIndex(src)->getColor() == turn)
 	{
-		if (abs(Location(srcRow, srcCol + 'a' + 1) - dst) == 2 && (srcRow != dstRow && srcCol != dstCol))
+		if (abs(Location(srcRow, srcCol + 'a' + 1) - dst) == 2 && (srcRow != dstRow && srcCol != dstCol))	//*in knight.txt (1)
 		{
 			flag = knightMove(board, turn, src, dst);
 		}
-		else if (abs(Location(srcRow, srcCol + 'a' + 2) - dst) == 1 && (srcRow != dstRow && srcCol != dstCol))
+		else if (abs(Location(srcRow, srcCol + 'a' + 2) - dst) == 1 && (srcRow != dstRow && srcCol != dstCol))	//*in knight.txt (2)
 		{
 			flag = knightMove(board, turn, src, dst);
 		}
-		else if (abs(Location(srcRow, srcCol + 'a' - 1) - dst) == 2 && (srcRow != dstRow && srcCol != dstCol))
+		else if (abs(Location(srcRow, srcCol + 'a' - 1) - dst) == 2 && (srcRow != dstRow && srcCol != dstCol))	//*in knight.txt (3)
 		{
 			flag = knightMove(board, turn, src, dst);
 		}
-		else if (abs(Location(srcRow, srcCol + 'a' - 2) - dst) == 1 && (srcRow != dstRow && srcCol != dstCol))
+		else if (abs(Location(srcRow, srcCol + 'a' - 2) - dst) == 1 && (srcRow != dstRow && srcCol != dstCol))	//*in knight.txt (4)
 		{
 			flag = knightMove(board, turn, src, dst);
 		}
-		else
+		else	//if not knight's move
 		{
 			return INVALID_MOVE;
 		}
 	}
-	else
+	else	//not color's turn
 	{
 		return SRC_HAS_NO_TURNS_TOOL;
 	}

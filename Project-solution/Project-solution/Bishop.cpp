@@ -7,6 +7,18 @@ Output:	None.
 **/
 Bishop::Bishop(int color) : Tool(color, 'B') {}
 
+/**
+Checks if the bishop can move from the source location to the destination location.
+Input:	board - the board
+		turn - whose turn
+		src - the source location
+		dst - the destination location
+Output:	0 - valid move
+		2 - invalid move, src hasn't turn's tool
+		3 - invalid move, dst has turn's tool
+		6 - invalid move, invalid tool's movement
+		7 - invalid move, src and dst are the same.
+**/
 char Bishop::isLegal(Board& board, int turn, Location src, Location dst)
 {
 	char flag = 0;
@@ -15,7 +27,7 @@ char Bishop::isLegal(Board& board, int turn, Location src, Location dst)
 
 	if (board.getIndex(src)->getColor() == turn)
 	{
-		if (abs(srcRow - dstRow) == abs(srcCol - dstCol))
+		if (abs(srcRow - dstRow) == abs(srcCol - dstCol))	//if the move is diagonal
 		{
 			if ((srcRow < dstRow && srcCol > dstCol) || (srcRow > dstRow && srcCol < dstCol)) //checking if y=x+b
 			{
@@ -25,17 +37,17 @@ char Bishop::isLegal(Board& board, int turn, Location src, Location dst)
 			{
 				flag = diagonalDown(board, turn, src, dst);
 			}
-			else	//the move is not a diagonal.
+			else	//the move is not a bishop move.
 			{
 				return INVALID_MOVE;
 			}
 		}
-		else
+		else	//the move is not a bishop move.
 		{
 			return INVALID_MOVE;
 		}
 	}
-	else
+	else	//not color's turn
 	{
 		return SRC_HAS_NO_TURNS_TOOL;
 	}

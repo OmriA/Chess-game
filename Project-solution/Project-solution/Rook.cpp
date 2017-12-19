@@ -40,7 +40,7 @@ char Rook::isLegal(Board& board, int turn, Location src, Location dst)
 			return INVALID_MOVE;
 		}
 	}
-	else
+	else	//not color's turn
 	{
 		return SRC_HAS_NO_TURNS_TOOL;
 	}
