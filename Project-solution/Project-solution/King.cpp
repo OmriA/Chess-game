@@ -5,7 +5,7 @@ Constractor for the king.
 Input:	color - the color of the tool.
 Output:	None.
 **/
-King::King(int color, unsigned int row, char col) : Tool(color, 'K', row, col), _moved(false) {}
+King::King(int color) : Tool(color, 'K'), _moved(false) {}
 
 /**
 Checks if the king can move from the source location to the destination location.

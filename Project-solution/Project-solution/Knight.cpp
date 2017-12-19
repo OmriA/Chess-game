@@ -5,7 +5,7 @@ Constractor for the knight.
 Input:	color - the color of the tool.
 Output:	None.
 **/
-Knight::Knight(int color, unsigned int row, char col) : Tool(color, 'N', row, col) {}
+Knight::Knight(int color) : Tool(color, 'N') {}
 
 /**
 Checks if the knight can move from the source location to the destination location.

@@ -5,7 +5,7 @@ Constractor for the rook.
 Input:	color - the color of the tool.
 Output:	None.
 **/
-Rook::Rook(int color, unsigned int row, char col) : Tool(color, 'R', row, col), _moved(false) {}
+Rook::Rook(int color) : Tool(color, 'R'), _moved(false) {}
 
 /**
 Checks if the rook can move from the source location to the destination location.

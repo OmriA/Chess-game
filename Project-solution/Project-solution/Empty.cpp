@@ -5,7 +5,7 @@ Constractor for the empty tool.
 Input:	None.
 Output:	None.
 **/
-Empty::Empty(unsigned int row, char col) : Tool(EMPTY, '#', row, col) {}
+Empty::Empty() : Tool(EMPTY, '#') {}
 
 /**
 return always 2 (invalid move, src hasn't turn's tool) because it is an empty tool.

@@ -5,7 +5,7 @@ Constractor for the queen.
 Input:	color - the color of the tool.
 Output:	None.
 **/
-Queen::Queen(int color, unsigned int row, char col) : Tool(color, 'Q', row, col) {}
+Queen::Queen(int color) : Tool(color, 'Q') {}
 
 /**
 Checks if the queen can move from the source location to the destination location.

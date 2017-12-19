@@ -225,7 +225,7 @@ Input:	color - the color of the tool
 		sign - the sign of the tool
 Output:	None.
 **/
-Tool::Tool(int color, char sign, unsigned int row, char col) : _color(color), _sign(sign), _pos(row, col)
+Tool::Tool(int color, char sign) : _color(color), _sign(sign)
 {
 	if (color == BLACK)	//checking if the color is black.
 	{
