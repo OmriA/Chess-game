@@ -1,15 +1,4 @@
-﻿  Tool.cpp
-  Source.cpp
-  Rook.cpp
-  Queen.cpp
-  Player.cpp
-  Pawn.cpp
-  Location.cpp
-  Knight.cpp
-  King.cpp
-  Empty.cpp
+﻿  Pawn.cpp
   Board.cpp
-  Bishop.cpp
   Generating Code...
-c:\users\magshimim\documents\magshimim\eleventhgrade\firstsemester\programming\middleproject_omriabramovich&itaygirstein\chess-game\project-solution\project-solution\pawn.cpp(96): warning C4715: 'Pawn::isLegal': not all control paths return a value
-  Project-solution.vcxproj -> C:\Users\magshimim\Documents\magshimim\EleventhGrade\FirstSemester\Programming\MiddleProject_OmriAbramovich&ItayGirstein\Chess-game\Project-solution\Debug\Project-solution.exe
+  Project-solution.vcxproj -> C:\Users\magshimim\Desktop\Itay\Magshimim\11\C++\7\Project-solution\Debug\Project-solution.exe

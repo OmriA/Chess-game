@@ -8,5 +8,4 @@ public:
 
 private:
 	bool _moved;
-	bool _movingUp;
 };

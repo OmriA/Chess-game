@@ -5,13 +5,7 @@ Constractor for the knight.
 Input:	color - the color of the tool.
 Output:	None.
 **/
-Pawn::Pawn(int color) : Tool(color, 'P'), _moved(false), _movingUp(true)
-{
-	if (color == BLACK)
-	{
-		_movingUp = false;
-	}
-}
+Pawn::Pawn(int color) : Tool(color, 'P'), _moved(false) {}
 
 /**
 Checks if the knight can move from the source location to the destination location.
@@ -33,64 +27,47 @@ char Pawn::isLegal(Board& board, int turn, Location src, Location dst, bool test
 
 	if (board.getIndex(src)->getColor() == turn)
 	{
-		if (_movingUp)	//checking if the pawn is going up.
+		if (turn == BLACK)	//if the tool is black
 		{
-			if (srcCol == dstCol && board.getIndex(dst)->getSign() == '#')	//checking if it is vertical and dst has no tool.
+			if (src - dst == -2 && !_moved && srcCol == dstCol)	//checking if first move of black pawn
 			{
-				if (abs(src - dst) == 1)	//checking if the dst is only 1 cell above the src.
-				{
-					flag = vertical(board, turn, src, dst);
-				}
-				else if (!_moved && abs(src - dst) == 2)	//checking if the dst is 2 cells above the src and the pawn didn't move.
-				{
-					flag = vertical(board, turn, src, dst);
-				}
-				else	//Invalid move to this pawn.
-				{
-					return INVALID_MOVE;
-				}
+				flag = vertical(board, turn, src, dst);
 			}
-			else if (board.getIndex(dst)->getSign() != '#')		//checking if in dst has a tool.
+			else if (src - dst == -1 && srcCol == dstCol)	//checking if about to move 1 move down
 			{
-				if (abs(src - dst) == 0)	//checking if y=x+b
-				{
-					if ((srcRow < dstRow && srcCol > dstCol) || (srcRow > dstRow && srcCol < dstCol))
-					{
-						flag = diagonalUp(board, turn, src, dst);
-					}
-					else
-					{
-						return INVALID_MOVE;
-					}
-				}
-				else if (abs(src - dst) == 2)	//checking if y=-x+b
-				{
-					if ((srcRow > dstRow && srcCol > dstCol) || (srcRow < dstRow && srcCol < dstCol))	//cheking if y=-x+b
-					{
-						flag = diagonalDown(board, turn, src, dst);
-					}
-					else
-					{
-						return INVALID_MOVE;
-					}
-				}
-				else	//Invalid move to this pawn.
-				{
-					return INVALID_MOVE;
-				}
+				flag = mainCheck(board, turn, src, dst);
 			}
-			else	//Invalid move to this pawn.
+			else	//if not a pawn's move
 			{
-				return INVALID_CHECK;
+				return INVALID_MOVE;
 			}
 		}
-		else	//the pawn is going down
+		else	//if the tool is white
 		{
-
+			if (src - dst == 2 && !_moved && srcCol == dstCol)	//checking if first move of white pawn
+			{
+				flag = vertical(board, turn, src, dst);
+			}
+			else if (src - dst == 1 && srcCol == dstCol)	//checking if about to move 1 move down
+			{
+				flag = mainCheck(board, turn, src, dst);
+			}
+			else	//if not a pawn's move
+			{
+				return INVALID_MOVE;
+			}
 		}
 	}
 	else	//not color's turn
 	{
 		return SRC_HAS_NO_TURNS_TOOL;
 	}
+
+	if ((flag == VALID_CHECK || flag == VALID_MOVE) && !test)
+	{
+		move(board, src, dst);
+		_moved = true;
+	}
+
+	return flag;
 }

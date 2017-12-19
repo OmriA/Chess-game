@@ -29,6 +29,7 @@ void Board::freeBoard()
 		for (unsigned int j = 0; j < BOARD_SIZE; j++)
 		{
 			delete _board[i][j];
+			_board[i][j] = nullptr;
 		}
 	}
 }
@@ -112,9 +113,9 @@ void Board::initBoard(const char* str)
 			setIndex(Location(row, char(col + 'a')), new Queen(color));
 			break;
 
-			//case 'P':
-			//	setIndex(Location(row, char(col + 'a')), new Pawn(color));
-			//	break;
+		case 'P':
+			setIndex(Location(row, char(col + 'a')), new Pawn(color));
+			break;
 
 		default:
 			setIndex(Location(row, char(col + 'a')), new Empty());

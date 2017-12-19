@@ -65,7 +65,7 @@ void main()
 		Location src(BOARD_SIZE - 1 - unsigned int(msgFromGraphics[1] - '1'), msgFromGraphics[0]);
 		Location dst(BOARD_SIZE - 1 - unsigned int(msgFromGraphics[3] - '1'), msgFromGraphics[2]);
 
-		flag = board.getIndex(src)->isLegal(board, turn, src, dst);
+		flag = board.getIndex(src)->isLegal(board, turn, src, dst, false);
 		msgToGraphics[0] = flag;
 		msgToGraphics[1] = 0;	// msgToGraphics should contain the result of the operation
 
