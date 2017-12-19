@@ -2,7 +2,7 @@
 #include "AllTools.h"
 
 /**
-Constractor to the board.
+Constractor for the board.
 Input:	None.
 Output:	None.
 **/
@@ -18,11 +18,11 @@ Board::Board()
 }
 
 /**
-Distractor to the board.
+Distractor for the board.
 Input:	None.
 Output:	None.
 **/
-Board::~Board()
+void Board::freeBoard()
 {
 	for (unsigned int i = 0; i < BOARD_SIZE; i++)
 	{
@@ -108,13 +108,13 @@ void Board::initBoard(const char* str)
 			setIndex(Location(row, char(col + 'a')), new Knight(color));
 			break;
 
-		//case 'Q':
-		//	setIndex(Location(row, char(col + 'a')), new Queen(color));
-		//	break;
+		case 'Q':
+			setIndex(Location(row, char(col + 'a')), new Queen(color));
+			break;
 
-		//case 'P':
-		//	setIndex(Location(row, char(col + 'a')), new Pawn(color));
-		//	break;
+			//case 'P':
+			//	setIndex(Location(row, char(col + 'a')), new Pawn(color));
+			//	break;
 
 		default:
 			setIndex(Location(row, char(col + 'a')), new Empty());
@@ -123,6 +123,7 @@ void Board::initBoard(const char* str)
 	}
 	reverseBoard();
 }
+
 /**
 Reversing the board
 Input:	None.

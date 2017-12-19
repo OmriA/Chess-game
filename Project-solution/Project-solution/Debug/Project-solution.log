@@ -1,8 +1,2 @@
-﻿  Rook.cpp
-  Queen.cpp
-  Knight.cpp
-  King.cpp
-  Empty.cpp
-  Bishop.cpp
-  Generating Code...
-c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\queen.cpp(25): error C4716: 'Queen::isLegal': must return a value
+﻿  Queen.cpp
+  Project-solution.vcxproj -> C:\Users\magshimim\Desktop\Itay\Magshimim\11\C++\7\Project-solution\Debug\Project-solution.exe

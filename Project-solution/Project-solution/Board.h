@@ -14,7 +14,8 @@ private:
 
 public:
 	Board();
-	~Board();
+	~Board() = default;
+	void freeBoard();
 	void initBoard(const char* str);
 	void printBoard() const;
 	Tool* getIndex(const Location cell) const;
