@@ -1,5 +1,10 @@
 #include "Bishop.h"
 
+/**
+Constractor to the bishop.
+Input:	color - the color of the tool.
+Output:	None.
+**/
 Bishop::Bishop(int color) : Tool(color, 'B') {}
 
 char Bishop::isLegal(Board& board, int turn, Location src, Location dst)

@@ -17,6 +17,11 @@ Board::Board()
 	}
 }
 
+/**
+Distractor to the board.
+Input:	None.
+Output:	None.
+**/
 Board::~Board()
 {
 	for (unsigned int i = 0; i < BOARD_SIZE; i++)
@@ -45,14 +50,27 @@ void Board::printBoard() const
 	}
 }
 
+/**
+The index returns the tool in a specific index in the board.
+Input:	cell - the location of the tool in the board.
+Output:	pointer to the tool in the board.
+**/
 Tool* Board::getIndex(const Location cell) const
 {
 	return _board[cell.getRow()][cell.getCol()];
 }
+
+/**
+Inserting the new tool to the board.
+Input:	cell - the location to insert to.
+		newTool - pointer to the new to insert into the table.
+Output:	None.
+**/
 void Board::setIndex(const Location cell, Tool* newTool)
 {
 	_board[cell.getRow()][cell.getCol()] = newTool;
 }
+
 /**
 Getting a string of the board and initzalsing it into the board
 Input:	str - the str from frontend

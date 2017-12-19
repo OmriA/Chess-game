@@ -251,6 +251,13 @@ int Tool::getColor() const
 	return _color;
 }
 
+/**
+The function moves the tool in the src location to the dst location.
+Input:	board - reference to the board (because we change it)
+		src - the source location.
+		dst - the dest location.
+Output:	None.
+**/
 void Tool::move(Board& board, Location src, Location dst)
 {
 	Tool* temp = board.getIndex(dst);

@@ -1,5 +1,10 @@
 #include "Knight.h"
 
+/**
+Constractor to the knight.
+Input:	color - the color of the tool.
+Output:	None.
+**/
 Knight::Knight(int color) : Tool(color, 'N') {}
 
 char Knight::isLegal(Board& board, int turn, Location src, Location dst)

@@ -1,5 +1,10 @@
 #include "King.h"
 
+/**
+Constractor to the king.
+Input:	color - the color of the tool.
+Output:	None.
+**/
 King::King(int color) : Tool(color, 'K'), _moved(false) {}
 
 char King::isLegal(Board& board, int turn, Location src, Location dst)
