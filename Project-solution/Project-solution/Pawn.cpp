@@ -1,14 +1,14 @@
 #include "Pawn.h"
 
 /**
-Constractor for the knight.
+Constractor for the pawn.
 Input:	color - the color of the tool.
 Output:	None.
 **/
 Pawn::Pawn(int color) : Tool(color, 'P'), _moved(false) {}
 
 /**
-Checks if the knight can move from the source location to the destination location.
+Checks if the pawn can move from the source location to the destination location.
 Input:	board - the board
 		turn - whose turn
 		src - the source location
@@ -29,11 +29,19 @@ char Pawn::isLegal(Board& board, int turn, Location src, Location dst, bool test
 	{
 		if (turn == BLACK)	//if the tool is black
 		{
-			if (src - dst == -2 && !_moved && srcCol == dstCol)	//checking if first move of black pawn
+			if (src - dst == -2 && !_moved && srcCol == dstCol && board.getIndex(dst)->getSign() == '#')	//checking if first move of black pawn
 			{
 				flag = vertical(board, turn, src, dst);
 			}
-			else if (src - dst == -1 && srcCol == dstCol)	//checking if about to move 1 move down
+			else if (src - dst == -1 && srcCol == dstCol && board.getIndex(dst)->getSign() == '#')	//checking if about to move 1 move down
+			{
+				flag = mainCheck(board, turn, src, dst);
+			}
+			else if (src - dst == -2 && (srcRow < dstRow && srcCol < dstCol) && board.getIndex(dst)->getSign() != '#')	//checking if black pawn is about to eat right
+			{
+				flag = mainCheck(board, turn, src, dst);
+			}
+			else if (src - dst == 0 && (srcRow < dstRow && srcCol > dstCol) && board.getIndex(dst)->getSign() != '#')	//checking if black pawn is about to eat left
 			{
 				flag = mainCheck(board, turn, src, dst);
 			}
@@ -44,11 +52,19 @@ char Pawn::isLegal(Board& board, int turn, Location src, Location dst, bool test
 		}
 		else	//if the tool is white
 		{
-			if (src - dst == 2 && !_moved && srcCol == dstCol)	//checking if first move of white pawn
+			if (src - dst == 2 && !_moved && srcCol == dstCol && board.getIndex(dst)->getSign() == '#')	//checking if first move of white pawn
 			{
 				flag = vertical(board, turn, src, dst);
 			}
-			else if (src - dst == 1 && srcCol == dstCol)	//checking if about to move 1 move down
+			else if (src - dst == 1 && srcCol == dstCol && board.getIndex(dst)->getSign() == '#')	//checking if about to move 1 move down
+			{
+				flag = mainCheck(board, turn, src, dst);
+			}
+			else if (src - dst == 0 && (srcRow > dstRow && srcCol < dstCol) && board.getIndex(dst)->getSign() != '#')	//checking if white pawn is about to eat right
+			{
+				flag = mainCheck(board, turn, src, dst);
+			}
+			else if (src - dst == 2 && (srcRow > dstRow && srcCol > dstCol) && board.getIndex(dst)->getSign() != '#')	//checking if white pawn is about to eat left
 			{
 				flag = mainCheck(board, turn, src, dst);
 			}
