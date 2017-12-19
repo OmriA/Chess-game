@@ -37,11 +37,11 @@ char Pawn::isLegal(Board& board, int turn, Location src, Location dst, bool test
 			{
 				flag = mainCheck(board, turn, src, dst);
 			}
-			else if (src - dst == -2 && (srcRow < dstRow && srcCol < dstCol) && board.getIndex(dst)->getSign() != '#')	//checking if black pawn is about to eat right
+			else if (src - dst == -2 && (srcRow < dstRow && srcCol < dstCol) && board.getIndex(dst)->getSign() != '#' && abs(srcRow - dstRow) == 1)	//checking if black pawn is about to eat right
 			{
 				flag = mainCheck(board, turn, src, dst);
 			}
-			else if (src - dst == 0 && (srcRow < dstRow && srcCol > dstCol) && board.getIndex(dst)->getSign() != '#')	//checking if black pawn is about to eat left
+			else if (src - dst == 0 && (srcRow < dstRow && srcCol > dstCol) && board.getIndex(dst)->getSign() != '#' && abs(srcRow - dstRow) == 1)	//checking if black pawn is about to eat left
 			{
 				flag = mainCheck(board, turn, src, dst);
 			}
@@ -60,11 +60,11 @@ char Pawn::isLegal(Board& board, int turn, Location src, Location dst, bool test
 			{
 				flag = mainCheck(board, turn, src, dst);
 			}
-			else if (src - dst == 0 && (srcRow > dstRow && srcCol < dstCol) && board.getIndex(dst)->getSign() != '#')	//checking if white pawn is about to eat right
+			else if (src - dst == 0 && (srcRow > dstRow && srcCol < dstCol) && board.getIndex(dst)->getSign() != '#' && abs(srcRow - dstRow) == 1)	//checking if white pawn is about to eat right
 			{
 				flag = mainCheck(board, turn, src, dst);
 			}
-			else if (src - dst == 2 && (srcRow > dstRow && srcCol > dstCol) && board.getIndex(dst)->getSign() != '#')	//checking if white pawn is about to eat left
+			else if (src - dst == 2 && (srcRow > dstRow && srcCol > dstCol) && board.getIndex(dst)->getSign() != '#' && abs(srcRow - dstRow) == 1)	//checking if white pawn is about to eat left
 			{
 				flag = mainCheck(board, turn, src, dst);
 			}
