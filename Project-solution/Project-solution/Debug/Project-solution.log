@@ -1,2 +1,17 @@
 ﻿  Tool.cpp
-  Project-solution.vcxproj -> C:\Users\magshimim\Documents\magshimim\EleventhGrade\FirstSemester\Programming\MiddleProject_OmriAbramovich&ItayGirstein\Chess-game\Project-solution\Debug\Project-solution.exe
+  Source.cpp
+  Rook.cpp
+  Queen.cpp
+  Player.cpp
+  Pawn.cpp
+  Location.cpp
+  Knight.cpp
+c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\knight.cpp(15): error C3861: 'knightMove': identifier not found
+c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\knight.cpp(19): error C3861: 'knightMove': identifier not found
+c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\knight.cpp(23): error C3861: 'knightMove': identifier not found
+c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\knight.cpp(27): error C3861: 'knightMove': identifier not found
+  King.cpp
+  Empty.cpp
+  Board.cpp
+  Bishop.cpp
+  Generating Code...

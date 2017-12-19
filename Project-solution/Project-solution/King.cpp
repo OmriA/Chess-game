@@ -18,17 +18,24 @@ char King::isLegal(Board& board, int turn, Location src, Location dst)
 		{
 			flag = horizontal(board, turn, src, dst);
 		}
-		else if (abs(dst - src) == 0)
+		else if (abs(src - dst) == 0)	//checking if y=x+b
 		{
-			if ((srcRow < dstRow && srcCol > dstCol) || (srcRow > dstRow && srcCol < dstCol))	//checking if y=x+b
+			if ((srcRow < dstRow && srcCol > dstCol) || (srcRow > dstRow && srcCol < dstCol))
 			{
 				flag = diagonalUp(board, turn, src, dst);
 			}
-			else if ((srcRow > dstRow && srcCol > dstCol) || (srcRow < dstRow && srcCol < dstCol))	//cheking if y=-x+b
+			else
+			{
+				return INVALID_MOVE;
+			}
+		}
+		else if (abs(src - dst) == 2)	//checking if y=-x+b
+		{
+			if ((srcRow > dstRow && srcCol > dstCol) || (srcRow < dstRow && srcCol < dstCol))	//cheking if y=-x+b
 			{
 				flag = diagonalDown(board, turn, src, dst);
 			}
-			else	//U ARE NOT SUPPOSE TO GET HERE! 
+			else
 			{
 				return INVALID_MOVE;
 			}
