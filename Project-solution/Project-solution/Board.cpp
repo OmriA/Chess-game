@@ -142,3 +142,23 @@ void Board::reverseBoard()
 		}
 	}
 }
+/**
+Checking where is the sign given in input and returning the tool that sign is in it
+Input:	sign - the sign we want to look for (tool)
+Output:	the tool that owns the sign
+**/
+Tool* Board::getTool(char sign)
+{
+	Tool* toReturn = nullptr;
+	for (unsigned int i = 0; i < BOARD_SIZE / 2; i++)
+	{
+		for (unsigned int j = 0; j < BOARD_SIZE; j++)
+		{
+			if (_board[i][j]->getSign() == sign)
+			{
+				toReturn = _board[i][j];
+			}
+		}
+	}
+	return toReturn;
+}

@@ -19,7 +19,7 @@ Output:	0 - valid move
 		6 - invalid move, invalid tool's movement
 		7 - invalid move, src and dst are the same.
 **/
-char Rook::isLegal(Board& board, int turn, Location src, Location dst)
+char Rook::isLegal(Board& board, int turn, Location src, Location dst, bool test)
 {
 	char flag = 0;
 	int dstRow = dst.getRow(), dstCol = dst.getCol();
@@ -45,7 +45,7 @@ char Rook::isLegal(Board& board, int turn, Location src, Location dst)
 		return SRC_HAS_NO_TURNS_TOOL;
 	}
 
-	if (flag == VALID_CHECK || flag == VALID_MOVE)
+	if ((flag == VALID_CHECK || flag == VALID_MOVE) && !test)
 	{
 		move(board, src, dst);
 		_moved = true;

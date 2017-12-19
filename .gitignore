@@ -315,3 +315,6 @@ OpenCover/
 ASALocalRun/
 Project-solution/.vs/Project-solution/v15/Browse.VC.db
 Project-solution/.vs/Project-solution/v15/.suo
+*.obj
+*.obj
+*.obj

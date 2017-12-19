@@ -10,7 +10,7 @@ public:
 	virtual ~Tool() = default;
 	char getSign() const;
 	int getColor() const;
-	virtual char isLegal(Board& board, int turn, Location src, Location dst) = 0;
+	virtual char isLegal(Board& board, int turn, Location src, Location dst, bool test) = 0;
 
 protected:
 	void move(Board& board, Location src, Location dst);

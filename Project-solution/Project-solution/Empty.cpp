@@ -15,7 +15,7 @@ Input:	board - the board
 		dst - the destination location
 Output:	always 2 (invalid move, src hasn't turn's tool) because it is an empty tool.
 **/
-char Empty::isLegal(Board& board, int turn, Location src, Location dest)
+char Empty::isLegal(Board& board, int turn, Location src, Location dest, bool test)
 {
 	return SRC_HAS_NO_TURNS_TOOL;
 }

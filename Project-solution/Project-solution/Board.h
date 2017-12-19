@@ -8,10 +8,6 @@
 class Tool;
 
 class Board {
-private:
-	Tool* _board[BOARD_SIZE][BOARD_SIZE];
-	void reverseBoard();
-
 public:
 	Board();
 	~Board() = default;
@@ -20,4 +16,9 @@ public:
 	void printBoard() const;
 	Tool* getIndex(const Location cell) const;
 	void setIndex(const Location cell, Tool* newTool);
+	Tool* getTool(char sign);
+
+private:
+	Tool* _board[BOARD_SIZE][BOARD_SIZE];
+	void reverseBoard();
 };

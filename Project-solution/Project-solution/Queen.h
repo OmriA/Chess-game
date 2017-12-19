@@ -6,6 +6,6 @@ class Queen : public Tool {
 public:
 	Queen(int color);
 	~Queen() = default;
-	virtual char isLegal(Board& board, int turn, Location src, Location dst) override;
+	virtual char isLegal(Board& board, int turn, Location src, Location dst, bool test) override;
 
 };
