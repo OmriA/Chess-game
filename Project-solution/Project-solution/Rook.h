@@ -8,6 +8,4 @@ public:
 	virtual ~Rook() = default;
 	virtual char isLegal(Board& board, int turn, Location src, Location dst, bool test) override;
 
-private:
-	bool _moved;
 };

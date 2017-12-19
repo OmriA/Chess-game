@@ -1,11 +1,14 @@
 #include "Rook.h"
 
+extern Player pb;
+extern Player pw;
+
 /**
 Constractor for the rook.
 Input:	color - the color of the tool.
 Output:	None.
 **/
-Rook::Rook(int color) : Tool(color, 'R'), _moved(false) {}
+Rook::Rook(int color) : Tool(color, 'R') {}
 
 /**
 Checks if the rook can move from the source location to the destination location.
@@ -45,10 +48,38 @@ char Rook::isLegal(Board& board, int turn, Location src, Location dst, bool test
 		return SRC_HAS_NO_TURNS_TOOL;
 	}
 
-	if ((flag == VALID_CHECK || flag == VALID_MOVE) && !test)
+	if ((flag == VALID_MOVE) && !test)
 	{
 		move(board, src, dst);
-		_moved = true;
+	}
+
+	if (turn == pb.getColor() && !test)
+	{
+		if (pw.getKing()->check(board))
+		{
+			flag = VALID_CHECK;
+		}
+		if (pb.getKing()->check(board))
+		{
+			flag = INVALID_CHECK;
+		}
+	}
+
+	if (turn == pw.getColor() && !test)
+	{
+		if (pb.getKing()->check(board))
+		{
+			flag = VALID_CHECK;
+		}
+		if (pw.getKing()->check(board))
+		{
+			flag = INVALID_CHECK;
+		}
+	}
+
+	if (flag == INVALID_CHECK)
+	{
+		move(board, dst, src);
 	}
 
 	return flag;

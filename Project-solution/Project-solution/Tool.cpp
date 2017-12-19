@@ -275,3 +275,28 @@ void Tool::move(Board& board, Location src, Location dst)
 		board.setIndex(src, temp);
 	}
 }
+
+/**
+checking if this king is threatened by any tool from the other player.
+Input:	board - the board of the game
+**/
+bool Tool::check(Board board)
+{
+	for (unsigned int i = 0; i < BOARD_SIZE; i++)
+	{
+		for (unsigned int j = 0; j < BOARD_SIZE; j++)
+		{
+			Tool* toolToCheck = board.getIndex(Location(i, j + 'a'));
+			if (getColor() != toolToCheck->getColor())
+			{
+				char isLegalAns = toolToCheck->isLegal(board, toolToCheck->getColor(), Location(i, j + 'a'), board.getToolIndex(getSign()), true);
+				if (isLegalAns == VALID_MOVE)
+				{
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
+}

@@ -3,6 +3,7 @@
 #include "Board.h"
 
 class Board;
+class Player;
 
 class Tool {
 public:
@@ -11,6 +12,7 @@ public:
 	char getSign() const;
 	int getColor() const;
 	virtual char isLegal(Board& board, int turn, Location src, Location dst, bool test) = 0;
+	bool check(Board board);
 
 protected:
 	void move(Board& board, Location src, Location dst);

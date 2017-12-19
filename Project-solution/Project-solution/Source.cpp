@@ -4,6 +4,9 @@
 #include <iostream>
 #include <thread>
 
+Player pb(BLACK);
+Player pw(WHITE);
+
 using namespace std;
 void main()
 {
@@ -50,6 +53,8 @@ void main()
 	{
 		turn = 1;
 	}
+	pb.setKing(board.getTool('k'));
+	pw.setKing(board.getTool('K'));
 	p.sendMessageToGraphics(msgToGraphics);   // send the board string
 
 	// get message from graphics

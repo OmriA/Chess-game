@@ -151,7 +151,7 @@ Output:	the tool that owns the sign
 Tool* Board::getTool(char sign)
 {
 	Tool* toReturn = nullptr;
-	for (unsigned int i = 0; i < BOARD_SIZE / 2; i++)
+	for (unsigned int i = 0; i < BOARD_SIZE; i++)
 	{
 		for (unsigned int j = 0; j < BOARD_SIZE; j++)
 		{
@@ -162,4 +162,20 @@ Tool* Board::getTool(char sign)
 		}
 	}
 	return toReturn;
+}
+
+Location Board::getToolIndex(char sign)
+{
+	for (unsigned int i = 0; i < BOARD_SIZE; i++)
+	{
+		for (unsigned int j = 0; j < BOARD_SIZE; j++)
+		{
+			if (_board[i][j]->getSign() == sign)
+			{
+				return Location(i, j + 'a');
+			}
+		}
+	}
+
+	return Location(60, 'z');
 }
