@@ -1,7 +1,7 @@
 #include "Bishop.h"
 
 /**
-Constractor to the bishop.
+Constractor for the bishop.
 Input:	color - the color of the tool.
 Output:	None.
 **/

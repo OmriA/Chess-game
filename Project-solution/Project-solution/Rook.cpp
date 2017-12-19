@@ -1,7 +1,7 @@
 #include "Rook.h"
 
 /**
-Constractor to the rook.
+Constractor for the rook.
 Input:	color - the color of the tool.
 Output:	None.
 **/

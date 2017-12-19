@@ -1,7 +1,7 @@
 #include "King.h"
 
 /**
-Constractor to the king.
+Constractor for the king.
 Input:	color - the color of the tool.
 Output:	None.
 **/

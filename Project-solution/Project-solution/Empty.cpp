@@ -1,7 +1,7 @@
 #include "Empty.h"
 
 /**
-Constractor to the empty tool.
+Constractor for the empty tool.
 Input:	None.
 Output:	None.
 **/

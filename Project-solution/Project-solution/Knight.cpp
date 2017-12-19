@@ -1,7 +1,7 @@
 #include "Knight.h"
 
 /**
-Constractor to the knight.
+Constractor for the knight.
 Input:	color - the color of the tool.
 Output:	None.
 **/

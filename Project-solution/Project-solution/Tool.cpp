@@ -1,5 +1,6 @@
 #include "Tool.h"
 #include "Empty.h"
+
 /**
 Checking all of the basic conditions
 Input:	board - the board
@@ -217,8 +218,9 @@ char Tool::knightMove(Board board, int turn, Location src, Location dst)
 {
 	return mainCheck(board, turn, src, dst);
 }
+
 /**
-Constractor for the tool
+Constractor for the tool checking if the tool is a lower case letter or high case letter (Black/White)
 Input:	color - the color of the tool
 		sign - the sign of the tool
 Output:	None.

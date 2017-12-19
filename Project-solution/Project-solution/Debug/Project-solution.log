@@ -1,2 +1,8 @@
-﻿  Location.cpp
-  Project-solution.vcxproj -> C:\Users\magshimim\Documents\magshimim\EleventhGrade\FirstSemester\Programming\MiddleProject_OmriAbramovich&ItayGirstein\Chess-game\Project-solution\Debug\Project-solution.exe
+﻿  Rook.cpp
+  Queen.cpp
+  Knight.cpp
+  King.cpp
+  Empty.cpp
+  Bishop.cpp
+  Generating Code...
+c:\users\magshimim\desktop\itay\magshimim\11\c++\7\project-solution\project-solution\queen.cpp(25): error C4716: 'Queen::isLegal': must return a value
