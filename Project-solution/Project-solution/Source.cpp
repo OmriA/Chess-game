@@ -5,7 +5,7 @@
 #include <thread>
 
 using namespace std;
-void main()
+int main()
 {
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	srand(time_t(NULL));
@@ -31,7 +31,7 @@ void main()
 		else
 		{
 			p.close();
-			return;
+			return 1;
 		}
 	}
 
@@ -89,4 +89,5 @@ void main()
 	}
 
 	p.close();
+	return 0;
 }

@@ -18,6 +18,8 @@ protected:
 	char horizontal(Board board, int turn, Location src, Location dst);
 	char diagonalUp(Board board, int turn, Location src, Location dst);
 	char diagonalDown(Board board, int turn, Location src, Location dst);
+	char mainCheck(Board board, int turn, Location src, Location dst);
+	char knightMove(Board board, int turn, Location src, Location dst);
 	int _color;	//white = 1,  black = 0, empty = -1.
 
 private:

@@ -17,6 +17,18 @@ Board::Board()
 	}
 }
 
+Board::~Board()
+{
+	for (unsigned int i = 0; i < BOARD_SIZE; i++)
+	{
+		for (unsigned int j = 0; j < BOARD_SIZE; j++)
+		{
+			delete _board[i][j];
+		}
+	}
+	std::cout << "Bye Bye!" << std::endl;
+}
+
 /**
 Returns the board string.
 Input:	None.
@@ -72,9 +84,9 @@ void Board::initBoard(const char* str)
 			setIndex(Location(row, char(col + 'a')), new King(color));
 			break;
 
-		//case 'N':
-		//	setIndex(Location(row, char(col + 'a')), new Knight(color));
-		//	break;
+		case 'N':
+			setIndex(Location(row, char(col + 'a')), new Knight(color));
+			break;
 
 		//case 'Q':
 		//	setIndex(Location(row, char(col + 'a')), new Queen(color));
